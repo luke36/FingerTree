@@ -7,13 +7,19 @@ using namespace luke36;
 
 int main() {
   FingerTree<int> t1;
+  FingerTree<int> t2;
 
   auto s = clock();
-  for (int i = 0; i < 1000000; i++)
+  for (int i = 0; i < 100000; i++) {
+    t2.push_back(i);
     t1.push_front(i);
-  for (int i = 0; i < 1000000; i++)
+  }
+  t1.append(t2);
+  for (int i = 0; i < 5000; i++) {
+    t1.pop_back();
     t1.pop_front();
-  std::cout << static_cast<double>(clock() - s) / CLOCKS_PER_SEC;
-  std::cout << "" << std::endl;
-  return 0;
+  }
+  for (int i = 0; i < 80000; i++)
+    std::cout << t1[i] << std::endl;
+  std::cout << static_cast<double>(clock() - s) / CLOCKS_PER_SEC << std::endl;
 }
